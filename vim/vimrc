@@ -1,0 +1,133 @@
+
+if v:version < 700
+    finish
+endif
+
+" vbundle setup
+if !isdirectory(expand("~/.vim/bundle/vundle/.git"))
+    !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+set nocompatible
+filetype off
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+Bundle 'SuperTab'
+Bundle 'php.vim'
+Bundle 'ShowTrailingWhitespace'
+Bundle 'python.vim'
+Bundle "sjl/gundo.vim"
+Bundle 'majutsushi/tagbar'
+Bundle 'andviro/flake8-vim'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'bling/vim-airline'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+
+" screen
+"
+syntax on
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+"
+" General Settings
+set nocompatible
+set confirm
+set history=100
+set ruler
+set number
+set backspace=indent,eol,start
+set nowrap
+set showcmd
+set nomodeline
+
+" Encoding
+set fileencodings=utf-8,big5,gbk,latin1
+set termencoding=utf-8
+set encoding=utf-8
+
+" Statusbar
+set laststatus=2
+"set statusline=\ %{HasPaste()}%-20.(%f\ %m%r%h\ %w%)\
+"set statusline+=\ %<%30(\ \ \ %{hostname()}:%{CurDir()}%)\
+"set statusline+=%=\ [%c%V,\ %l/%L]\ [%{&ff}/%{&fileencoding}/%Y]
+
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "")
+    return curdir
+endfunction
+function! HasPaste()
+    if &paste
+        return '[PASTE]'
+    else
+        return ''
+    endif
+endfunction
+
+" Indent
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+set smartindent
+
+filetype indent on   "required by vbundle
+filetype plugin on
+
+" Search
+set ic              "insensitive search
+set incsearch       "highlight while typing
+set hlsearch        "highlight search result
+set smartcase       "ignore case if search pattern is all owercase,case-sensitive otherwise
+
+" Fix vim 256colr BCE issue"
+if &term =~ '256color'
+  set t_ut=
+endif
+
+" Code Folding
+set foldmethod=indent
+set foldlevel=99
+
+" Custome Key
+
+" Plugin Setting
+" TagBar
+nnoremap <silent> <C-t>  :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+" andviro/flake8-vim
+"
+let g:PyFlakeOnWrite = 1
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeDefaultComplexity = 10
+let g:PyFlakeCWindow = 6
+let g:PyFlakeMaxLineLength = 100
+
+"Gundo settings
+"
+"nmap <leader>U :GundoToggle<cr>
+nnoremap <silent> <C-u> :GundoToggle<CR>
+let g:gundo_preview_bottom = 1
+let g:gundo_preview_height = 10
+let g:gundo_width = 30
+
+"jedi-vim
+let  g:jedi#completions_command = "<C-p>"
+
+"NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+"bling/vim-airline
+"
