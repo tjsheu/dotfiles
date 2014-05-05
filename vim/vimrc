@@ -31,6 +31,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
+Bundle 'altercation/vim-colors-solarized'
 
 " screen
 "
