@@ -27,19 +27,27 @@ Bundle 'python.vim'
 Bundle "sjl/gundo.vim"
 Bundle 'majutsushi/tagbar'
 Bundle 'andviro/flake8-vim'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
+Bundle 'fatih/vim-go'
+Bundle 'fatih/molokai'
 
 " screen
 "
 syntax on
+
+" Colorscheme Solarized
+colorscheme solarized
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
-colorscheme solarized
+
+" Colorscheme Molokai
+"colorscheme molokai
+"let g:rehash256 = 1
+"let g:molokai_original = 1
 
 "
 " General Settings
@@ -124,11 +132,40 @@ let g:gundo_preview_bottom = 1
 let g:gundo_preview_height = 10
 let g:gundo_width = 30
 
-"jedi-vim
-let  g:jedi#completions_command = "<C-p>"
+"vim-go
+let g:go_disable_autoinstall = 0
 
 "NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
 "bling/vim-airline
-"
+
+"gotags for tagbar
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
